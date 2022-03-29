@@ -7,6 +7,7 @@ const valor = document.querySelector(".js_valor");
 const numberUser = document.querySelector(".js_numberuser");
 const value = document.querySelector(".js_value");
 const letsGo = document.querySelector(".js_letsgo");
+const validate = document.querySelector(".js_validate");
 
 function pointsValue() {
   const start = points.value;
@@ -18,34 +19,33 @@ function getRandomNumber(max) {
 }
 
 function play() {
-  const numAleat = getRandomNumber(1);
+  const numAleat = getRandomNumber(6);
   const selectValue = parseInt(numberUser.value);
   const valorAcum = points.value * 2;
   if (selectValue === numAleat) {
     letsGo.innerHTML = "HA GANADO EL JUEGO";
- 
     valor.innerHTML = valorAcum;
   } else {
     letsGo.innerHTML = "Ha perdido el juego";
     valor.innerHTML = 0;
   }
+  validateValue(valorAcum);
 }
 
-// function backingOut() {
-//   play()
-//   if (valorAcum >= 200) {
-//     valor.innerHTML = `Su acumulado es de ${valor} ha lelgado al maximo, por favor retirese`;
-//   } else {
-//     valor.innerHTML = `Siga jugando`;
-//   }
-// }
+function validateValue(valorAcum) {
+  if (valorAcum >= 200) {
+    validate.innerHTML = `Su acumulado es de ${valorAcum} ha lelgado al maximo, por favor retirese`;
+  } else {
+    validate.innerHTML = `Siga jugando`;
+  }
+}
 
 
 function handleclickBtn(event) {
   event.preventDefault();
   pointsValue();
   play();
-  // backingOut();
+  // validate();
 }
 
 btn.addEventListener('click', handleclickBtn);
